@@ -1,0 +1,72 @@
+<h2>Employee List</h2>
+
+<button (click)="toggleForm()">Add Employee</button>
+
+<div *ngIf="showForm" style="margin-top:15px; border:1px solid #ccc; padding:10px;">
+
+  <h3>{{ isEdit ? 'Edit Employee' : 'Add Employee' }}</h3>
+
+  <div>
+    <label>First Name *</label><br/>
+    <input [(ngModel)]="firstName" placeholder="First Name">
+  </div>
+
+  <div>
+    <label>Last Name</label><br/>
+    <input [(ngModel)]="lastName" placeholder="Last Name">
+  </div>
+
+  <div>
+    <label>Email *</label><br/>
+    <input [(ngModel)]="email" placeholder="Email" type="email">
+  </div>
+
+  <div>
+    <label>Phone</label><br/>
+    <input [(ngModel)]="phone" placeholder="Phone">
+  </div>
+
+  <div>
+    <label>Department *</label><br/>
+    <select [(ngModel)]="selectedDeptId">
+      <option value="">-- Select Department --</option>
+      <option *ngFor="let d of departments" [value]="d.deptId">
+        {{d.deptName}}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label>Join Date *</label><br/>
+    <input type="date" [(ngModel)]="joinDate">
+  </div>
+
+  <button (click)="saveEmployee()">{{ isEdit ? 'Update' : 'Save' }}</button>
+  <button (click)="resetForm()">Cancel</button>
+
+</div>
+
+<hr>
+
+<table *ngIf="employees.length > 0" border="1" cellpadding="8">
+  <tr>
+    <th>ID</th><th>Name</th><th>Email</th><th>Dept</th><th>Phone</th><th>Join Date</th><th>Action</th>
+  </tr>
+  <tr *ngFor="let emp of employees">
+    <td>{{ emp.empId }}</td>
+    <td>{{ emp.firstName }} {{ emp.lastName }}</td>
+    <td>{{ emp.email }}</td>
+    <td>{{ emp.department?.deptName }}</td>
+    <td>{{ emp.phone }}</td>
+    <td>{{ emp.joinDate }}</td>
+    <td>
+      <button (click)="toggleForm(true, emp)">Edit</button>
+      <button (click)="deleteEmployee(emp.empId)">Delete</button>
+    </td>
+  </tr>
+</table>
+
+<p *ngIf="employees.length === 0">
+  No data found
+</p>
+

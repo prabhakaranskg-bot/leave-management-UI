@@ -1,0 +1,26 @@
+<h2>Department List</h2>
+
+<button (click)="toggleForm()">Add Department</button>
+
+<div *ngIf="showAddForm" style="margin-top:15px">
+  <input [(ngModel)]="deptName" placeholder="Department Name">
+  <button (click)="saveDepartment()">Save</button>
+</div>
+
+<hr>
+
+<table *ngIf="departments.length > 0" border="1" cellpadding="8">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+  </tr>
+
+  <tr *ngFor="let d of departments">
+    <td>{{d.deptId}}</td>
+    <td>{{d.deptName}}</td>
+  </tr>
+</table>
+
+<p *ngIf="departments.length == 0">
+  No data found
+</p>
