@@ -1,0 +1,25 @@
+table { width:100%; border-collapse: collapse; }
+th, td { padding:8px; border-bottom:1px solid #ccc; }
+button { margin-right:5px; padding:5px 10px; border-radius:6px; border:none; cursor:pointer; }
+button:hover { opacity:0.8; }
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* makes all columns evenly spaced */
+  }
+  
+  .user-table th, .user-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    word-wrap: break-word; /* wrap long text */
+  }
+  
+  .user-table th {
+    background-color: #f0f0f0;
+  }
+  .user-table th:last-child,
+  .user-table td:last-child {
+    width: 150px; /* fixed width for buttons */
+  }
+  

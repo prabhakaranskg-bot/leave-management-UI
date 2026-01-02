@@ -1,0 +1,10 @@
+<div class="alert-container">
+    <div
+      *ngFor="let alert of alerts()"
+      class="alert"
+      [ngClass]="alert.type"
+      (click)="close(alert)"
+    >
+      {{ alert.message }}
+    </div>
+  </div>

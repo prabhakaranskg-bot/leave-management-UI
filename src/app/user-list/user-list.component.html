@@ -1,0 +1,51 @@
+<h2>User Management</h2>
+
+<!-- Add User -->
+<button (click)="startCreate()" *ngIf="!creating && !editMode">+ Add User</button>
+
+<div *ngIf="creating">
+  <h3>Create New User</h3>
+  <label>Username</label>
+  <input [(ngModel)]="newUser.username">
+  <label>Password</label>
+  <input type="password" [(ngModel)]="newUser.password">
+  <label>Role</label>
+  <input [(ngModel)]="newUser.role">
+  <button (click)="createUser()">Save</button>
+  <button (click)="cancelCreate()">Cancel</button>
+</div>
+
+<!-- Edit User -->
+<div *ngIf="editMode">
+  <h3>Edit User</h3>
+  <label>Username</label>
+  <input [(ngModel)]="user.username">
+  <label>Role</label>
+  <input [(ngModel)]="user.role">
+  <button (click)="updateUser()">Save</button>
+  <button (click)="cancelEdit()">Cancel</button>
+</div>
+
+<!-- User Table -->
+<table class="user-table" *ngIf="!creating && !editMode">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of users">
+        <td>{{u.id}}</td>
+        <td>{{u.username}}</td>
+        <td>{{u.role}}</td>
+        <td>
+          <button (click)="startEdit(u)">Edit</button>
+          <button (click)="deleteUser(u.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
