@@ -1,34 +1,34 @@
 <h2>Employee List</h2>
 
-<button (click)="toggleForm()">Add Employee</button>
+<button class="btn-primary" (click)="toggleForm()">Add Employee</button>
 
-<div *ngIf="showForm" style="margin-top:15px; border:1px solid #ccc; padding:10px;">
+<div *ngIf="showForm" class="form-card">
 
   <h3>{{ isEdit ? 'Edit Employee' : 'Add Employee' }}</h3>
 
-  <div>
-    <label>First Name *</label><br/>
-    <input [(ngModel)]="firstName" placeholder="First Name">
+  <div class="form-row">
+    <label>First Name <span class="required">*</span> :</label>
+    <input class="inline-input" [(ngModel)]="firstName" placeholder="First Name">
   </div>
 
-  <div>
-    <label>Last Name</label><br/>
-    <input [(ngModel)]="lastName" placeholder="Last Name">
+  <div class="form-row">
+    <label>Last Name <span class="required">*</span> :</label>
+    <input class="inline-input" [(ngModel)]="lastName" placeholder="Last Name">
   </div>
 
-  <div>
-    <label>Email *</label><br/>
-    <input [(ngModel)]="email" placeholder="Email" type="email">
+  <div class="form-row">
+    <label>Email <span class="required">*</span> :</label>
+    <input class="inline-input" [(ngModel)]="email" placeholder="Email" type="email">
   </div>
 
-  <div>
-    <label>Phone</label><br/>
-    <input [(ngModel)]="phone" placeholder="Phone">
+  <div class="form-row">
+    <label>Phone <span class="required">*</span> :</label>
+    <input class="inline-input" [(ngModel)]="phone" placeholder="Phone">
   </div>
 
-  <div>
-    <label>Department *</label><br/>
-    <select [(ngModel)]="selectedDeptId">
+  <div class="form-row">
+    <label>Department <span class="required">*</span> :</label>
+    <select class="inline-input" [(ngModel)]="selectedDeptId">
       <option value="">-- Select Department --</option>
       <option *ngFor="let d of departments" [value]="d.deptId">
         {{d.deptName}}
@@ -36,37 +36,53 @@
     </select>
   </div>
 
-  <div>
-    <label>Join Date *</label><br/>
-    <input type="date" [(ngModel)]="joinDate">
+  <div class="form-row">
+    <label >Join Date <span class="required">*</span> :</label>
+    <input class="inline-input" type="date" [(ngModel)]="joinDate">
   </div>
 
-  <button (click)="saveEmployee()">{{ isEdit ? 'Update' : 'Save' }}</button>
-  <button (click)="resetForm()">Cancel</button>
+  <button class="btn-primary" (click)="saveEmployee()">{{ isEdit ? 'Update' : 'Save' }}</button>
+  <button class="btn-secondary" (click)="cancel()">Cancel</button>
 
 </div>
 
 <hr>
+<div class="table-wrapper" *ngIf="employees.length > 0">
+  <table class="styled-table">
 
-<table *ngIf="employees.length > 0" border="1" cellpadding="8">
-  <tr>
-    <th>ID</th><th>Name</th><th>Email</th><th>Dept</th><th>Phone</th><th>Join Date</th><th>Action</th>
-  </tr>
-  <tr *ngFor="let emp of employees">
-    <td>{{ emp.empId }}</td>
-    <td>{{ emp.firstName }} {{ emp.lastName }}</td>
-    <td>{{ emp.email }}</td>
-    <td>{{ emp.department?.deptName }}</td>
-    <td>{{ emp.phone }}</td>
-    <td>{{ emp.joinDate }}</td>
-    <td>
-      <button (click)="toggleForm(true, emp)">Edit</button>
-      <button (click)="deleteEmployee(emp.empId)">Delete</button>
-    </td>
-  </tr>
-</table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Dept</th>
+        <th>Phone</th>
+        <th>Join Date</th>
+        <th>Action</th><th></th>
+      </tr>
+    </thead>
 
-<p *ngIf="employees.length === 0">
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.empId }}</td>
+        <td>{{ emp.firstName }} {{ emp.lastName }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.department?.deptName }}</td>
+        <td>{{ emp.phone }}</td>
+        <td>{{ emp.joinDate }}</td>
+        <td>
+          <button class="btn-primary" (click)="toggleForm(true, emp)">Edit</button>
+        </td>
+        <td>
+          <button class="btn-primary" (click)="deleteEmployee(emp.empId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<p *ngIf="employees.length === 0" style="text-align:center">
   No data found
 </p>
 

@@ -1,45 +1,48 @@
 <h2>Leave Types</h2>
 
-<button (click)="toggleForm()">Add Leave Type</button>
+<button class="btn-primary" (click)="toggleForm()">Add Leave Type</button>
 
-<div *ngIf="showForm" style="border:1px solid #aaa; padding:10px; margin-top:10px">
+<div *ngIf="showForm" class="form-card">
 
   <h3>{{ isEdit ? 'Edit Leave Type' : 'Add Leave Type' }}</h3>
-
-  <label>Leave Code</label><br>
-  <input [(ngModel)]="form.leaveCode"><br>
-
-  <label>Leave Name</label><br>
-  <input [(ngModel)]="form.leaveName"><br>
-
-  <label>Annual Allocation</label><br>
-  <input type="number" [(ngModel)]="form.annualAllocation"><br>
-
+  <div class="form-row">
+  <label>Leave Code <span class="required">*</span> :</label><br>
+  <input class="inline-input" [(ngModel)]="form.leaveCode"><br>
+  </div>
+  <div class="form-row">
+  <label>Leave Name <span class="required">*</span> :</label><br>
+  <input class="inline-input" [(ngModel)]="form.leaveName"><br>
+  </div>
+  <div class="form-row">
+  <label>Annual Allocation <span class="required">*</span> :</label><br>
+  <input class="inline-input" type="number" [(ngModel)]="form.annualAllocation"><br>
+  </div>
+  <div class="form-row">
   <label>
-    <input type="checkbox" [(ngModel)]="form.carryForward">
+    <input   class="inline-input" type="checkbox" [(ngModel)]="form.carryForward">
     Carry Forward
   </label>
-  <br><br>
+  </div>
 
-  <button (click)="save()">
-    {{ isEdit ? 'Update' : 'Save' }}
-  </button>
+  <button class="btn-primary" (click)="save()">{{ isEdit ? 'Update' : 'Save' }} </button>
 
-  <button (click)="showForm=false">Cancel</button>
+  <button class="btn-secondary" (click)="showForm=false">Cancel</button>
 </div>
 
 <hr>
-
-<table border="1" cellpadding="8" *ngIf="leaveTypes.length > 0">
+<div class="table-wrapper">
+<table class="styled-table" *ngIf="leaveTypes.length > 0">
+    <thead>
   <tr>
     <th>#</th>
     <th>Code</th>
     <th>Name</th>
     <th>Allocation</th>
     <th>Carry Forward</th>
-    <th>Actions</th>
+    <th>Actions</th><th></th>
   </tr>
-
+</thead>
+<tbody>
   <tr *ngFor="let lt of leaveTypes; let i = index">
     <td>{{ i + 1 }}</td>
     <td>{{ lt.leaveCode }}</td>
@@ -47,12 +50,15 @@
     <td>{{ lt.annualAllocation }}</td>
     <td>{{ lt.carryForward ? 'Yes' : 'No' }}</td>
     <td>
-      <button (click)="toggleForm(true, lt)">Edit</button>
-      <button (click)="delete(lt.leaveTypeId)">Delete</button>
+      <button class="btn-primary" (click)="toggleForm(true, lt)">Edit</button>
+      </td>
+      <td>
+      <button class="btn-primary" (click)="delete(lt.leaveTypeId)">Delete</button>
     </td>
   </tr>
+</tbody>
 </table>
-
+</div>
 <p *ngIf="leaveTypes.length === 0">No records found</p>
 
 

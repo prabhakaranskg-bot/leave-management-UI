@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, UserService } from '../services/services/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AlertService } from '../services/services/alert.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class UserListComponent implements OnInit {
 
   editMode = false;
   creating = false;
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private alertService:AlertService) {}
 
   ngOnInit() { this.loadUsers(); }
 
@@ -46,7 +47,7 @@ export class UserListComponent implements OnInit {
   startCreate() { this.newUser = { username: '', password: '', role: '' }; this.creating = true; }
   createUser() {
     if (!this.newUser.username || !this.newUser.password || !this.newUser.role) {
-      alert('Fill all fields');
+      this.alertService.warning('Fill all fields');
       return;
     }
   
@@ -57,7 +58,7 @@ export class UserListComponent implements OnInit {
       },
       error: err => {
         console.error(err);
-        alert('Create failed');
+        this.alertService.warning('Create failed');
       }
     });
   }

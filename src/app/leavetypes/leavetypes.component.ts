@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LeaveType, LeavetypesService } from '../services/services/leavetypes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AlertService } from '../services/services/alert.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class LeavetypesComponent {
     leaveTypeId: 0
   };
 
-  constructor(private service: LeavetypesService) {}
+  constructor(private service: LeavetypesService,private alertService: AlertService) {}
 
   ngOnInit(): void {
     this.loadAll();
@@ -58,13 +59,13 @@ export class LeavetypesComponent {
   save() {
     if (this.isEdit && this.editId) {
       this.service.update(this.editId, this.form).subscribe(() => {
-        alert('Leave type updated');
+        this.alertService.success('Leave type updated');
         this.showForm = false;
         this.loadAll();
       });
     } else {
       this.service.create(this.form).subscribe(() => {
-        alert('Leave type created');
+        this.alertService.success('Leave type created');
         this.showForm = false;
         this.loadAll();
       });
@@ -77,4 +78,7 @@ export class LeavetypesComponent {
 
     this.service.delete(id).subscribe(() => this.loadAll());
   }
+  
+  
+
 }

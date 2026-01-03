@@ -1,13 +1,18 @@
-<nav style="background:#1976d2; padding:10px; color:white">
-  <a routerLink="/departments" style="margin-right:20px; color:white">Department</a>
-  <a routerLink="/employees" style="color:white" style="margin-right:20px; color:white">Employee</a>
-  <a routerLink="/holidays" style="margin-right:20px; color:white">Holidays</a>
-  <a routerLink="/leave-requests" style="margin-right:20px; color:white">Leave Request</a>
-  <a routerLink="/leave-types" style="margin-right:20px; color:white">Leave Types</a>
-  <a routerLink="/users" style="margin-right:20px; color:white">User List / Edit</a>
+<nav class="top-nav">
+  <div class="nav-left">
+    <span>Leave Management System</span>
+    <a routerLink="/departments" routerLinkActive="active">Departments</a>
+    <a routerLink="/employees" routerLinkActive="active">Employees</a>
+    <a routerLink="/holidays" routerLinkActive="active">Holidays</a>
+    <a routerLink="/leave-requests" routerLinkActive="active">Leave Requests</a>
+    <a routerLink="/leave-types" routerLinkActive="active">Leave Types</a>
+    <a routerLink="/users" routerLinkActive="active">User</a>
+  </div>
+
+  <button class="logout-btn" (click)="logout()">Logout</button>
 </nav>
+
 <app-alert></app-alert>
 <div style="padding:20px">
   <router-outlet></router-outlet>
 </div>
-<router-outlet />

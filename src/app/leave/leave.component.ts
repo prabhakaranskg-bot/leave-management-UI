@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LeaveRequest, LeaveService } from '../services/services/leave.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AlertService } from '../services/services/alert.service';
 
 export interface LeaveRequestDTO {
   employeeId: number;
@@ -47,7 +48,7 @@ export class LeaveComponent implements OnInit{
 
 
 
-  constructor(private leaveService: LeaveService) {}
+  constructor(private leaveService: LeaveService, private alertService: AlertService) {}
 
   ngOnInit(): void {
     this.loadLeaveTypes();
@@ -78,7 +79,7 @@ export class LeaveComponent implements OnInit{
     };
     console.log(req);  
     this.leaveService.applyLeave(req).subscribe(() => {
-      alert("Leave applied successfully");
+      this.alertService.success("Leave applied successfully");
       this.showForm = false;
       this.loadAll();
     });
@@ -86,7 +87,7 @@ export class LeaveComponent implements OnInit{
 
   approve(req: LeaveRequest,approverId: any) {
     if (!approverId) {
-      alert("Enter approver id first");
+      this.alertService.success("Leave applied successfully");
       return;
     }
     this.leaveService.approve(req.leaveId!, approverId).subscribe(() => {
@@ -96,12 +97,16 @@ export class LeaveComponent implements OnInit{
 
   reject(req: LeaveRequest,approverId: any) {
     if (!approverId) {
-      alert("Enter approver id first");
+      this.alertService.warning("Enter approver id first");
       return;
     }
 
     this.leaveService.reject(req.leaveId!, approverId).subscribe(() => {
       this.loadAll();
     });
+  }
+
+  cancel(): void {
+    this.showForm = false;   // always close
   }
 }

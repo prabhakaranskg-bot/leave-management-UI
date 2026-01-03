@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
 
-  constructor() { }
+  constructor(private alertService: AlertService) { }
 
   showError(message: string) {
     // You can replace this with Toastr or any modal
-    alert(message);
+    this.alertService.error(message);
   }
 }

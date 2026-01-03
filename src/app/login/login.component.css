@@ -1,4 +1,18 @@
-.login-container {
+
+
+.app-title {
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+  
+    color: transparent;
+    background: linear-gradient(90deg, #1976d2, #42a5f5);
+    background-clip: text;
+  }
+  
+  
+.login-container-h {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,19 +20,31 @@
     background: linear-gradient(to right, #4f46e5, #6366f1);
     font-family: Arial, sans-serif;
   }
-  
-  .login-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    width: 350px;
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
   }
-  
+  /* Smaller card */
+.login-card {
+    width: 320px;              /* reduced size */
+    padding: 18px 22px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
   .login-card h2 {
     text-align: center;
     margin-bottom: 25px;
     color: #4f46e5;
+  }
+
+  .login-card h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #c6bbbd;
   }
   
   .login-card label { margin-top: 12px; display:block; font-weight:600; }

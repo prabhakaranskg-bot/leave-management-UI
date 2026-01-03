@@ -1,38 +1,45 @@
 <h2>Holiday Calendar</h2>
 
-<button (click)="toggleForm()">Add Holiday</button>
+<button  class="btn-primary" (click)="toggleForm()">Add Holiday</button>
 
-<div *ngIf="showForm" style="border:1px solid #ccc; padding:10px; margin-top:15px;">
+<div *ngIf="showForm" class="form-card">
   <h3>{{ isEdit ? 'Edit Holiday' : 'Add Holiday' }}</h3>
-
-  <label>Date</label>
-  <input type="date" [(ngModel)]="holidayForm.holidayDate">
-
-  <label>Description</label>
-  <input type="text" [(ngModel)]="holidayForm.description" placeholder="Holiday description">
-
-  <button (click)="saveHoliday()">{{ isEdit ? 'Update' : 'Save' }}</button>
-  <button (click)="cancelForm()">Cancel</button>
+  <div class="form-row">
+  <label>Date <span class="required">*</span> :</label>
+  <input  class="inline-input" type="date" [(ngModel)]="holidayForm.holidayDate">
+  </div>
+  <div class="form-row">
+  <label>Description <span class="required">*</span> :</label>
+  <input class="inline-input" type="text" [(ngModel)]="holidayForm.description" placeholder="Holiday description">
+  </div>
+  <button class="btn-primary" (click)="saveHoliday()">{{ isEdit ? 'Update' : 'Save' }}</button>
+  <button class="btn-secondary" (click)="cancelForm()">Cancel</button>
 </div>
 
 <hr>
-
-<table border="1" cellpadding="8" *ngIf="holidays.length > 0">
+<div class="table-wrapper">
+<table class="styled-table" *ngIf="holidays.length > 0">
+    <thead>
   <tr>
-    <th>ID</th><th>HOLIDAY_ID</th><th>Date</th><th>Description</th><th>Actions</th>
+    <th>ID</th><th>HOLIDAY_ID</th><th>Date</th><th>Description</th><th>Actions</th><th></th>
   </tr>
+</thead>
+<tbody>
   <tr *ngFor="let h of holidays; let i = index">
     <td>{{i+1}}</td>
     <td>{{ h.holidayId }}</td>
     <td>{{ h.holidayDate }}</td>
     <td>{{ h.description }}</td>
     <td>
-      <button (click)="toggleForm(true, h)">Edit</button>
-      <button (click)="deleteHoliday(h.holidayId!)">Delete</button>
+      <button class="btn-primary" (click)="toggleForm(true, h)">Edit</button>
+      </td>
+      <td>
+      <button class="btn-primary" (click)="deleteHoliday(h.holidayId!)">Delete</button>
     </td>
   </tr>
+</tbody>
 </table>
-
+</div>
 <p *ngIf="holidays.length === 0">No holidays found.</p>
 
 

@@ -1,37 +1,43 @@
 <h2>Leave Requests</h2>
 
-<button (click)="toggleForm()">Apply Leave</button>
+<button class="btn-primary" (click)="toggleForm()">Apply Leave</button>
 
-<div *ngIf="showForm" style="margin-top:15px;border:1px solid #ccc;padding:10px">
+<div *ngIf="showForm" class="form-card">
 
   <h3>Apply Leave</h3>
-
-  <label>Employee ID</label><br>
-  <input [(ngModel)]="form.employeeId"><br>
-
-  <label>Leave Type</label>
-  <select [(ngModel)]="form.leaveTypeId" name="leaveTypeId" required>
+  <div class="form-row">
+  <label>Employee ID <span class="required">*</span> :</label>
+  <input  class="inline-input" [(ngModel)]="form.employeeId">
+  </div>
+  <div class="form-row">
+  <label>Leave Type <span class="required">*</span> :</label>
+  <select class="inline-input" [(ngModel)]="form.leaveTypeId" name="leaveTypeId" required>
     <option value="">-- Select Leave Type --</option>
     <option *ngFor="let lt of leaveTypes" [value]="lt.leaveTypeId">
       {{ lt.leaveName }}
     </option>
-  </select><br>
-
-
-  <label>Start Date</label><br>
-  <input type="date" [(ngModel)]="form.startDate"><br>
-
-  <label>End Date</label><br>
-  <input type="date" [(ngModel)]="form.endDate"><br>
-
-  <label>Reason</label><br>
-  <input [(ngModel)]="form.reason"><br><br>
-
-  <button (click)="applyLeave()">Submit</button>
+  </select>
+</div>
+<div class="form-row">
+  <label>Start Date <span class="required">*</span> :</label><br>
+  <input class="inline-input" type="date" [(ngModel)]="form.startDate"><br>
+</div>
+<div class="form-row">
+  <label>End Date <span class="required">*</span> :</label><br>
+  <input class="inline-input" type="date" [(ngModel)]="form.endDate"><br>
+</div>
+<div class="form-row">
+  <label>Reason <span class="required">*</span> :</label><br>
+  <input class="inline-input" [(ngModel)]="form.reason"><br><br>
+</div>
+  <button class="btn-primary" (click)="applyLeave()">Submit</button>
+  <button class="btn-secondary" (click)="cancel()">Cancel</button>
 </div>
 
 <hr>
-<table border="1" cellpadding="8" *ngIf="leaveRequests.length>0">
+<div class="table-wrapper">
+<table class="styled-table" *ngIf="leaveRequests.length>0">
+  <thead>
   <tr>
     <th>S.No</th>
     <th>Employee_Name</th>
@@ -42,7 +48,8 @@
     <th>Status</th>
     <th>Action</th>
   </tr>
-
+</thead>
+<tbody>
   <tr *ngFor="let l of leaveRequests; let i = index">
     <td>{{i+1}}</td>
     <td>{{ l?.employee?.firstName }} {{ l?.employee?.lastName }}</td>
@@ -53,12 +60,12 @@
     <td>{{ l.status }}</td>
     <td>
         <input type="text" [(ngModel)]="approverIds[i]" [disabled]="l.status !== 'PENDING'">
-        <button (click)="approve(l, approverIds[i])" [disabled]="l.status !== 'PENDING'">Approve</button>
-        <button (click)="reject(l,approverIds[i])"  [disabled]="l.status !== 'PENDING'">Reject</button>
+        <button class="approve-btn" (click)="approve(l, approverIds[i])" [disabled]="l.status !== 'PENDING'">Approve</button>
+        <button class="reject-btn" (click)="reject(l,approverIds[i])"  [disabled]="l.status !== 'PENDING'">Reject</button>
     </td>
-
+  </tbody>
 </table>
-
+</div>
 <p *ngIf="leaveRequests.length===0">
   No leave records
 </p>

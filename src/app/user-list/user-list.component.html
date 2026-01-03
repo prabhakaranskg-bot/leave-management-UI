@@ -1,18 +1,24 @@
 <h2>User Management</h2>
 
 <!-- Add User -->
-<button (click)="startCreate()" *ngIf="!creating && !editMode">+ Add User</button>
+<button class="btn-primary" (click)="startCreate()" *ngIf="!creating && !editMode">+ Add User</button>
 
-<div *ngIf="creating">
+<div class="form-card" *ngIf="creating">
   <h3>Create New User</h3>
-  <label>Username</label>
-  <input [(ngModel)]="newUser.username">
-  <label>Password</label>
-  <input type="password" [(ngModel)]="newUser.password">
-  <label>Role</label>
-  <input [(ngModel)]="newUser.role">
-  <button (click)="createUser()">Save</button>
-  <button (click)="cancelCreate()">Cancel</button>
+  <div class="form-row">
+  <label>Username <span class="required">*</span> :</label>
+  <input class="inline-input" [(ngModel)]="newUser.username">
+  </div>
+  <div class="form-row">
+  <label>Password <span class="required">*</span> :</label>
+  <input class="inline-input" type="password" [(ngModel)]="newUser.password">
+  </div>
+  <div class="form-row">
+  <label>Role <span class="required">*</span> :</label>
+  <input class="inline-input" [(ngModel)]="newUser.role">
+  </div>
+  <button class="btn-primary" (click)="createUser()">Save</button>
+  <button class="btn-secondary" (click)="cancelCreate()">Cancel</button>
 </div>
 
 <!-- Edit User -->
@@ -27,7 +33,8 @@
 </div>
 
 <!-- User Table -->
-<table class="user-table" *ngIf="!creating && !editMode">
+<div class="table-wrapper">
+<table class="styled-table" *ngIf="!creating && !editMode">
     <thead>
       <tr>
         <th>ID</th>
@@ -42,8 +49,8 @@
         <td>{{u.username}}</td>
         <td>{{u.role}}</td>
         <td>
-          <button (click)="startEdit(u)">Edit</button>
-          <button (click)="deleteUser(u.id!)">Delete</button>
+          <button class="btn-primary" (click)="startEdit(u)">Edit</button>
+          <button class="btn-primary" (click)="deleteUser(u.id!)">Delete</button>
         </td>
       </tr>
     </tbody>

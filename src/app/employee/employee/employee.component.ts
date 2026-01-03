@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class EmployeeComponent implements OnInit{
   employees: any[] = [];
   departments: any[] = [];
-
+  showAddForm = false;
   // form
   showForm = false;
   isEdit = false;
@@ -109,7 +109,12 @@ export class EmployeeComponent implements OnInit{
     this.joinDate = '';
     this.isEdit = false;
     this.editId = null;
-    this.showForm = true;
+  }
+
+  cancel(): void {
+    this.showForm = false;   // always close
+    this.isEdit = false;     // exit edit mode
+    this.resetForm();        // clear fields
   }
 
 }
