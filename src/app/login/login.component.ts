@@ -23,6 +23,8 @@ export class LoginComponent {
       next: (res) => {
         console.log(res);
         const token: string = res.token;
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        localStorage.setItem('token_expiry', (payload.exp * 1000).toString());
         localStorage.setItem('token', token);
         this.alertService.success('Login Success');
         this.router.navigate(['/users']);   // go to user list after login

@@ -1,4 +1,4 @@
-<nav class="top-nav">
+<nav class="top-nav" *ngIf="isLoggedIn()">
   <div class="nav-left">
     <span>Leave Management System</span>
     <a routerLink="/departments" routerLinkActive="active">Departments</a>

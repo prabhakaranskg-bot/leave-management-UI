@@ -25,7 +25,18 @@ export class AppComponent {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.clear();
     this.alertService.info("Logged out successfully");
     this.router.navigate(['/login']);
   }
+
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    const exp = Number(localStorage.getItem('token_expiry'));
+  
+    if (!token || !exp) return false;
+  
+    return Date.now() < exp;
+  }
+  
 }
