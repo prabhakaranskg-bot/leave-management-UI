@@ -22,15 +22,16 @@
 </div>
 
 <!-- Edit User -->
-<div *ngIf="editMode">
+<div class="table-wrapper" *ngIf="editMode">
   <h3>Edit User</h3>
-  <label>Username</label>
-  <input [(ngModel)]="user.username">
-  <label>Role</label>
-  <input [(ngModel)]="user.role">
-  <button (click)="updateUser()">Save</button>
-  <button (click)="cancelEdit()">Cancel</button>
+  <label>Username <span class="required">*</span> :</label>
+  <input class="inline-input" [(ngModel)]="user.username">
+  <label>Role <span class="required">*</span> :</label>
+  <input class="inline-input" [(ngModel)]="user.role">
+  <button class="btn-primary" (click)="updateUser()">Save</button>
+  <button class="btn-secondary" (click)="cancelEdit()">Cancel</button>
 </div>
+
 
 <!-- User Table -->
 <div class="table-wrapper">
