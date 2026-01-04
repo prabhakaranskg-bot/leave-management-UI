@@ -35,7 +35,7 @@
 </div>
 
 <hr>
-<div class="table-wrapper">
+<div class="table-wrapper" *ngIf="currentUserIsAdmin">
 <table class="styled-table" *ngIf="leaveRequests.length>0">
   <thead>
   <tr>
