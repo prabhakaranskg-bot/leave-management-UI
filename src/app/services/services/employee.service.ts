@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Department } from './department.service';
+import { environment } from '../../../environments/environment';
 
 export interface Employee {
   empId: number;
@@ -20,8 +21,8 @@ export interface Employee {
 })
 export class EmployeeService {
 
-  private baseUrl = 'http://localhost:8081/api/employees';
-  private deptUrl = 'http://localhost:8081/api/departments';
+  private baseUrl = `${environment.apiUrl}/api/employees`;
+  private deptUrl = `${environment.apiUrl}/api/departments`;
 
   constructor(private http: HttpClient) {}
 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface Holiday {
   holidayId?: number;
@@ -12,7 +13,7 @@ export interface Holiday {
 })
 export class HolidayService {
 
-  private apiUrl = 'http://localhost:8081/api/holidays';
+  private apiUrl = `${environment.apiUrl}/api/holidays`;
 
   constructor(private http: HttpClient) { }
 

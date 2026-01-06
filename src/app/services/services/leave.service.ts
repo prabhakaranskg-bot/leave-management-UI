@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { LeaveType } from './leavetypes.service';
 import { Employee } from './employee.service';
 import { LeaveRequestDTO } from '../../leave/leave.component';
+import { environment } from '../../../environments/environment';
 
 
 
@@ -26,12 +27,12 @@ export interface LeaveRequest {
 export class LeaveService {
 
 
-  private baseUrl = 'http://localhost:8081/api/leave-requests';
+  private baseUrl = `${environment.apiUrl}/api/leave-requests`;
 
   constructor(private http: HttpClient) {}
 
   getLeaveTypes(): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8081/api/leave-types`);
+    return this.http.get<any[]>(`${environment.apiUrl}/api/leave-types`);
   }
 
   applyLeave(request: LeaveRequestDTO): Observable<LeaveRequestDTO> {

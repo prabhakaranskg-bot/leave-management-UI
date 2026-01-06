@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface User {
   id?: number;
@@ -14,8 +15,8 @@ export interface User {
 })
 export class UserService {
 
-  private api = 'http://localhost:8081/api/users';
-  private authApi = 'http://localhost:8081/auth/login';
+  private api = `${environment.apiUrl}/api/users`;
+  private authApi = `${environment.apiUrl}/auth/login`;
 
   constructor(private http: HttpClient) {}
 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface LeaveType {
   leaveTypeId: number;
@@ -16,7 +17,7 @@ export interface LeaveType {
 })
 export class LeavetypesService {
 
-  private baseUrl = 'http://localhost:8081/api/leave-types';
+  private baseUrl = `${environment.apiUrl}/api/leave-types`;
 
   constructor(private http: HttpClient) {}
 
