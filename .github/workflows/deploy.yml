@@ -36,5 +36,5 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync dist/leave-management-app s3://lms-fe-bucket   --delete
+          aws s3 sync dist/leave-management-app/ s3://lms-fe-bucket --delete
           #aws s3 sync dist/your-angular-project-name s3://${{ secrets.S3_BUCKET }} --delete
