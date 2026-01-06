@@ -22,7 +22,7 @@ export interface LeaveRequestDTO {
 export class LeaveComponent implements OnInit{
   leaveRequests: LeaveRequest[] = [];
   leaveTypes: any[] = [];
-  currentUserIsAdmin = false;
+  currentUserIsManager = false;
   showForm = false;
 
   // form fields
@@ -52,10 +52,10 @@ export class LeaveComponent implements OnInit{
 
   ngOnInit(): void {
     const roles: string[] = JSON.parse(localStorage.getItem('role') || '[]');
-    this.currentUserIsAdmin = roles.includes('MANAGER');
-    console.log("Role-Flag:",this.currentUserIsAdmin);
+    this.currentUserIsManager = roles.includes('MANAGER');
+    console.log("Role-Flag:",this.currentUserIsManager);
     this.loadLeaveTypes();
-    if (this.currentUserIsAdmin) {
+    if (this.currentUserIsManager) {
     this.loadAll();
     }
   }
