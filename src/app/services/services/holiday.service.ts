@@ -13,7 +13,7 @@ export interface Holiday {
 })
 export class HolidayService {
 
-  private apiUrl = `${environment.apiUrl}/api/holidays`;
+  private apiUrl = `${environment.apiUrl}/holidays`;
 
   constructor(private http: HttpClient) { }
 

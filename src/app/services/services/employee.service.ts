@@ -21,8 +21,8 @@ export interface Employee {
 })
 export class EmployeeService {
 
-  private baseUrl = `${environment.apiUrl}/api/employees`;
-  private deptUrl = `${environment.apiUrl}/api/departments`;
+  private baseUrl = `${environment.apiUrl}/employees`;
+  private deptUrl = `${environment.apiUrl}/departments`;
 
   constructor(private http: HttpClient) {}
 

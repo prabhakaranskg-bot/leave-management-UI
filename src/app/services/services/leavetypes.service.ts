@@ -17,7 +17,7 @@ export interface LeaveType {
 })
 export class LeavetypesService {
 
-  private baseUrl = `${environment.apiUrl}/api/leave-types`;
+  private baseUrl = `${environment.apiUrl}/leave-types`;
 
   constructor(private http: HttpClient) {}
 

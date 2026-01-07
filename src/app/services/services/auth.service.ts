@@ -35,22 +35,22 @@ export class AuthService {
 
   // USER CRUD -> /api/users/**
   getAllUsers() {
-    return this.http.get(`${this.base}/api/users`);
+    return this.http.get(`${this.base}/users`);
   }
 
   getUser(id: number) {
-    return this.http.get(`${this.base}/api/users/${id}`);
+    return this.http.get(`${this.base}/users/${id}`);
   }
 
   createUser(data: any) {
-    return this.http.post(`${this.base}/api/users`, data);
+    return this.http.post(`${this.base}/users`, data);
   }
 
   updateUser(id: number, data: any) {
-    return this.http.put(`${this.base}/api/users/${id}`, data);
+    return this.http.put(`${this.base}/users/${id}`, data);
   }
 
   deleteUser(id: number) {
-    return this.http.delete(`${this.base}/api/users/${id}`);
+    return this.http.delete(`${this.base}/users/${id}`);
   }
 }

@@ -14,7 +14,7 @@ export interface Department {
 })
 export class DepartmentService {
 
-  private baseUrl = `${environment.apiUrl}/api/departments`;
+  private baseUrl = `${environment.apiUrl}/departments`;
 
   constructor(private http: HttpClient) {}
 

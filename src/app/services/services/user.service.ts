@@ -15,7 +15,7 @@ export interface User {
 })
 export class UserService {
 
-  private api = `${environment.apiUrl}/api/users`;
+  private api = `${environment.apiUrl}/users`;
   private authApi = `${environment.apiUrl}/auth/login`;
 
   constructor(private http: HttpClient) {}

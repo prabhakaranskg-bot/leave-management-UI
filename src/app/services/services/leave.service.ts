@@ -27,12 +27,12 @@ export interface LeaveRequest {
 export class LeaveService {
 
 
-  private baseUrl = `${environment.apiUrl}/api/leave-requests`;
+  private baseUrl = `${environment.apiUrl}/leave-requests`;
 
   constructor(private http: HttpClient) {}
 
   getLeaveTypes(): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/api/leave-types`);
+    return this.http.get<any[]>(`${environment.apiUrl}/leave-types`);
   }
 
   applyLeave(request: LeaveRequestDTO): Observable<LeaveRequestDTO> {
