@@ -16,5 +16,5 @@ export const routes: Routes = [
     { path: 'leave-types', component: LeavetypesComponent },
     { path: 'login', component: LoginComponent },
     { path: 'users', component: UserListComponent },
-    { path: '', redirectTo: 'departments', pathMatch: 'full' }
+    { path: '', redirectTo: 'login', pathMatch: 'full' }
   ];
