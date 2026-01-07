@@ -52,7 +52,7 @@ export class LeaveComponent implements OnInit{
 
   ngOnInit(): void {
     const roles: string[] = JSON.parse(localStorage.getItem('role') || '[]');
-    this.currentUserIsManager = roles.includes('MANAGER');
+    this.currentUserIsManager = roles.includes('ROLE_MANAGER');
     console.log("Role-Flag:",this.currentUserIsManager);
     this.loadLeaveTypes();
     if (this.currentUserIsManager) {
